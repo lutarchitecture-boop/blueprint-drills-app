@@ -1,0 +1,9 @@
+{
+  "appId": "com.blueprintdrills.ppceprep",
+  "appName": "Blueprint Drills",
+  "webDir": "www",
+  "backgroundColor": "#FBF7FF",
+  "android": {
+    "backgroundColor": "#FBF7FF"
+  }
+}
