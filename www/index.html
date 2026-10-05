@@ -360,9 +360,30 @@
     flex-shrink:0;
     margin-top:auto;
   }
+  .nav-row{
+    display:flex;
+    gap:10px;
+    align-items:stretch;
+  }
+  .prev-btn{
+    display:none;
+    flex-shrink:0;
+    width:52px;
+    border-radius:999px;
+    border:2px solid var(--line-strong);
+    background:var(--card);
+    color:var(--ink);
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .prev-btn.show{ display:flex; }
+  .prev-btn:active{ transform: scale(0.96); }
+  .prev-btn svg{ width:20px; height:20px; }
   .next-btn{
     display:none;
-    width:100%;
+    flex:1;
     padding:15px;
     border-radius:999px;
     border:none;
@@ -529,7 +550,12 @@
     </div>
   </div>
   <div class="next-wrap">
-    <button class="next-btn" id="nextBtn" type="button">Next question</button>
+    <div class="nav-row">
+      <button class="prev-btn" id="prevBtn" type="button" aria-label="Previous question">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="next-btn" id="nextBtn" type="button">Next question</button>
+    </div>
   </div>
 </main>
 
@@ -626,8 +652,11 @@
     return n;
   }
 
-  var current = null;
-  var answered = false;
+  // ---- history of served questions in this session, so Previous can step
+  // back through them without re-fetching or re-scoring.
+  // each entry: {index: <QUESTIONS index>, letterPicked: 'A'|null, isRight: bool|null}
+  var history = [];
+  var pos = -1;
 
   var qTextEl = document.getElementById('qText');
   var qIndexEl = document.getElementById('qIndex');
@@ -636,6 +665,7 @@
   var explainEl = document.getElementById('explain');
   var explainBodyEl = document.getElementById('explainBody');
   var verdictEl = document.getElementById('verdict');
+  var prevBtn = document.getElementById('prevBtn');
   var nextBtn = document.getElementById('nextBtn');
   var hsCorrect = document.getElementById('hsCorrect');
   var hsTotal = document.getElementById('hsTotal');
@@ -654,9 +684,10 @@
     hsTotal.textContent = t.a;
   }
 
-  function renderQuestion(){
-    var q = QUESTIONS[current];
-    answered = false;
+  function renderAt(p){
+    pos = p;
+    var entry = history[pos];
+    var q = QUESTIONS[entry.index];
     themeTagEl.textContent = q.theme;
     themeTagEl.className = 'theme-tag ' + (THEME_CLASS[q.theme] || 'tag-c0');
     qIndexEl.textContent = 'Q · ' + (q.id + 1);
@@ -679,16 +710,20 @@
       optionsEl.appendChild(btn);
     });
 
+    if (entry.letterPicked){
+      showAnsweredState(entry);
+    }
+
+    prevBtn.classList.toggle('show', pos > 0);
+
     var card = document.getElementById('card');
     card.scrollTop = 0;
   }
 
-  function onAnswer(letter){
-    if (answered) return;
-    answered = true;
-    var q = QUESTIONS[current];
+  function showAnsweredState(entry){
+    var q = QUESTIONS[entry.index];
     var correctLetter = q.correct;
-    var isRight = letter === correctLetter;
+    var isRight = entry.isRight;
 
     var buttons = optionsEl.querySelectorAll('.opt');
     buttons.forEach(function(btn){
@@ -697,7 +732,7 @@
       if (l === correctLetter){
         btn.classList.add('correct');
         btn.querySelector('.opt-icon').innerHTML = CHECK_SVG;
-      } else if (l === letter){
+      } else if (l === entry.letterPicked){
         btn.classList.add('wrong');
         btn.querySelector('.opt-icon').innerHTML = CROSS_SVG;
       }
@@ -708,6 +743,18 @@
     explainBodyEl.textContent = q.explanation;
     explainEl.classList.add('show');
     nextBtn.classList.add('show');
+  }
+
+  function onAnswer(letter){
+    var entry = history[pos];
+    if (entry.letterPicked) return; // already answered earlier, re-visiting via Previous
+    var q = QUESTIONS[entry.index];
+    var correctLetter = q.correct;
+    var isRight = letter === correctLetter;
+    entry.letterPicked = letter;
+    entry.isRight = isRight;
+
+    showAnsweredState(entry);
 
     var rec = ensureTheme(q.theme);
     rec.attempted += 1;
@@ -716,12 +763,22 @@
     updateHeader();
   }
 
-  function advance(){
-    current = nextIndex();
-    renderQuestion();
+  function goNext(){
+    if (pos < history.length - 1){
+      renderAt(pos + 1);
+    } else {
+      var idx = nextIndex();
+      history.push({index: idx, letterPicked: null, isRight: null});
+      renderAt(history.length - 1);
+    }
   }
 
-  nextBtn.addEventListener('click', advance);
+  function goPrev(){
+    if (pos > 0) renderAt(pos - 1);
+  }
+
+  nextBtn.addEventListener('click', goNext);
+  prevBtn.addEventListener('click', goPrev);
 
   // ---- Drawer
   var backdrop = document.getElementById('backdrop');
@@ -798,7 +855,9 @@
       return;
     }
     updateHeader();
-    advance();
+    var idx = nextIndex();
+    history.push({index: idx, letterPicked: null, isRight: null});
+    renderAt(0);
   }
 
   if (window.claude && window.claude.hot){
