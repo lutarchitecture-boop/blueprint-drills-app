@@ -4,8 +4,9 @@ links for locally-bundled @font-face declarations, inject question data,
 and wrap in a full standalone HTML document."""
 import json
 
-TEMPLATE = '/tmp/claude-0/-home-claude/f99670d4-b952-5ed3-9f6a-5869fefc1142/scratchpad/app_template.html'
-QUESTIONS = '/tmp/claude-0/-home-claude/f99670d4-b952-5ed3-9f6a-5869fefc1142/scratchpad/questions_master.json'
+TEMPLATE = 'source/app_template.html'
+QUESTIONS = 'source/questions_master.json'
+ORAL = 'source/oral_practice.json'
 OUT = 'www/index.html'
 
 FONT_FACES = """<style>
@@ -40,6 +41,11 @@ data = json.load(open(QUESTIONS))
 payload = json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
 assert '__QUESTIONS_JSON__' in tpl
 tpl = tpl.replace('__QUESTIONS_JSON__', payload)
+
+oral_data = json.load(open(ORAL))
+oral_payload = json.dumps(oral_data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
+assert '__ORAL_JSON__' in tpl
+tpl = tpl.replace('__ORAL_JSON__', oral_payload)
 
 doc = (
     '<!doctype html>\n<html lang="en">\n<head>\n'

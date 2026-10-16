@@ -1,0 +1,1435 @@
+<title>Blueprint Drills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap">
+<style>
+  :root{
+    --bg-base:#FBF7FF;
+    --blob1:#F6D9FF;
+    --blob2:#D6ECFF;
+    --blob3:#FFEAD6;
+    --paper:#F6F0FF;
+    --card:#FFFFFF;
+    --ink:#1E1033;
+    --ink-dim:#79709C;
+    --line:#E8DEFB;
+    --line-strong:#D2BFF5;
+    --accent:#8B5CF6;
+    --accent2:#EC4899;
+    --accent-ink:#6B21D6;
+    --accent-tint:#F1E6FF;
+    --good:#0FA968;
+    --good-tint:#DEFBEA;
+    --bad:#F43F5E;
+    --bad-tint:#FFE4E8;
+    --shadow: 0 2px 6px rgba(139,79,246,0.10), 0 16px 32px -14px rgba(139,79,246,0.38);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg-base:#140B26;
+      --blob1:#3A1653;
+      --blob2:#0F2A46;
+      --blob3:#3A1830;
+      --paper:#1B1236;
+      --card:#20153C;
+      --ink:#F4EEFF;
+      --ink-dim:#B0A2D9;
+      --line:#3A2A5C;
+      --line-strong:#513E7E;
+      --accent:#B794FF;
+      --accent2:#FF7AC6;
+      --accent-ink:#E7D6FF;
+      --accent-tint:#2C1B4D;
+      --good:#39E68F;
+      --good-tint:#103A26;
+      --bad:#FF6B85;
+      --bad-tint:#401822;
+      --shadow: 0 2px 6px rgba(0,0,0,0.4), 0 18px 36px -16px rgba(183,148,255,0.45);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg-base:#140B26;
+    --blob1:#3A1653;
+    --blob2:#0F2A46;
+    --blob3:#3A1830;
+    --paper:#1B1236;
+    --card:#20153C;
+    --ink:#F4EEFF;
+    --ink-dim:#B0A2D9;
+    --line:#3A2A5C;
+    --line-strong:#513E7E;
+    --accent:#B794FF;
+    --accent2:#FF7AC6;
+    --accent-ink:#E7D6FF;
+    --accent-tint:#2C1B4D;
+    --good:#39E68F;
+    --good-tint:#103A26;
+    --bad:#FF6B85;
+    --bad-tint:#401822;
+    --shadow: 0 2px 6px rgba(0,0,0,0.4), 0 18px 36px -16px rgba(183,148,255,0.45);
+    color-scheme: dark;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background-color:var(--bg-base);
+    background-image:
+      radial-gradient(38% 26% at 8% 4%, var(--blob1) 0%, transparent 100%),
+      radial-gradient(34% 24% at 96% 14%, var(--blob2) 0%, transparent 100%),
+      radial-gradient(40% 30% at 90% 96%, var(--blob3) 0%, transparent 100%);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+    display:flex;
+    flex-direction:column;
+    padding-inline: 16px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mono{ font-family:'Space Mono', ui-monospace, monospace; }
+
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes pop-in{
+      from{ opacity:0; transform:translateY(6px) scale(0.985); }
+      to{ opacity:1; transform:translateY(0) scale(1); }
+    }
+    .card{ animation: pop-in .22s ease; }
+  }
+
+  header{
+    padding-block: 12px 10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-shrink:0;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    cursor:pointer;
+    background:none;
+    border:none;
+    padding:0;
+    font:inherit;
+    color:inherit;
+  }
+  .brand-mark{
+    width:32px;height:32px;
+    flex-shrink:0;
+    border-radius:10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow: var(--shadow);
+  }
+  .brand-mark svg{ width:18px; height:18px; }
+  .brand h1{
+    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-size:19px;
+    margin:0;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    background: linear-gradient(100deg, var(--accent) 10%, var(--accent2) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .stat-pill{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    font-weight:700;
+    font-variant-numeric: tabular-nums;
+    color:var(--accent-ink);
+    background:var(--accent-tint);
+    border:1.5px solid var(--accent);
+    border-radius:999px;
+    padding:6px 12px;
+    display:flex;
+    align-items:center;
+    gap:5px;
+    cursor:pointer;
+  }
+  .stat-pill b{ color:var(--accent-ink); font-weight:700; }
+  .stat-pill.timer{
+    border-color:var(--line-strong);
+    color:var(--ink-dim);
+    background:var(--paper);
+    cursor:default;
+  }
+  .stat-pill.timer.low{
+    border-color:var(--bad);
+    color:var(--bad);
+    background:var(--bad-tint);
+  }
+  .icon-btn{
+    width:36px;height:36px;
+    border-radius:11px;
+    border:none;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    flex-shrink:0;
+  }
+  .icon-btn svg{ width:17px; height:17px; }
+
+  main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  }
+
+  .card{
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:24px;
+    box-shadow:var(--shadow);
+    padding:20px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    max-height:100%;
+    overflow-y:auto;
+  }
+
+  .theme-tag{
+    align-self:flex-start;
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    border-radius:999px;
+    padding:5px 11px;
+    border:1.5px solid transparent;
+  }
+  .tag-c0{ background:#F1E4FF; color:#6B21D6; border-color:#D7B8FF; }
+  .tag-c1{ background:#FFE1F0; color:#D6237A; border-color:#FFB8DA; }
+  .tag-c2{ background:#FFE8D1; color:#C4600A; border-color:#FFCB99; }
+  .tag-c3{ background:#FFF6C2; color:#8A6D00; border-color:#F2E27A; }
+  .tag-c4{ background:#D8FBE9; color:#0E8F55; border-color:#9EEFC6; }
+  .tag-c5{ background:#DCF1FF; color:#0B76B7; border-color:#A6DFFF; }
+  .tag-c6{ background:#E4E4FF; color:#4B3FC9; border-color:#C3C1FF; }
+  .tag-c7{ background:#FFE2DE; color:#D8452F; border-color:#FFB9AF; }
+  .tag-c8{ background:#D4FBF3; color:#0E8F7E; border-color:#9BEFDF; }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .tag-c0{ background:#2C1B4D; color:#D6BBFF; border-color:#4A3378; }
+    :root:not([data-theme="light"]) .tag-c1{ background:#3A1330; color:#FF9FD1; border-color:#5C2049; }
+    :root:not([data-theme="light"]) .tag-c2{ background:#3A2210; color:#FFC088; border-color:#5C3A18; }
+    :root:not([data-theme="light"]) .tag-c3{ background:#332C08; color:#F4E24D; border-color:#524711; }
+    :root:not([data-theme="light"]) .tag-c4{ background:#0E2A1E; color:#6FF3AE; border-color:#1B4433; }
+    :root:not([data-theme="light"]) .tag-c5{ background:#0C2636; color:#8FDBFF; border-color:#173F54; }
+    :root:not([data-theme="light"]) .tag-c6{ background:#211F45; color:#B3ACFF; border-color:#37326E; }
+    :root:not([data-theme="light"]) .tag-c7{ background:#3A1712; color:#FFA48F; border-color:#5C271E; }
+    :root:not([data-theme="light"]) .tag-c8{ background:#0C2C27; color:#6FF3DD; border-color:#194840; }
+  }
+  :root[data-theme="dark"] .tag-c0{ background:#2C1B4D; color:#D6BBFF; border-color:#4A3378; }
+  :root[data-theme="dark"] .tag-c1{ background:#3A1330; color:#FF9FD1; border-color:#5C2049; }
+  :root[data-theme="dark"] .tag-c2{ background:#3A2210; color:#FFC088; border-color:#5C3A18; }
+  :root[data-theme="dark"] .tag-c3{ background:#332C08; color:#F4E24D; border-color:#524711; }
+  :root[data-theme="dark"] .tag-c4{ background:#0E2A1E; color:#6FF3AE; border-color:#1B4433; }
+  :root[data-theme="dark"] .tag-c5{ background:#0C2636; color:#8FDBFF; border-color:#173F54; }
+  :root[data-theme="dark"] .tag-c6{ background:#211F45; color:#B3ACFF; border-color:#37326E; }
+  :root[data-theme="dark"] .tag-c7{ background:#3A1712; color:#FFA48F; border-color:#5C271E; }
+  :root[data-theme="dark"] .tag-c8{ background:#0C2C27; color:#6FF3DD; border-color:#194840; }
+
+  .q-index{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--ink-dim);
+    letter-spacing:0.04em;
+  }
+
+  .q-text{
+    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-size:19px;
+    line-height:1.38;
+    font-weight:700;
+    letter-spacing:-0.005em;
+    text-wrap:balance;
+    margin:0;
+  }
+
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+
+  .opt{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-align:left;
+    width:100%;
+    background:var(--paper);
+    border:2px solid var(--line);
+    border-radius:16px;
+    padding:11px 13px;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:14.5px;
+    font-weight:500;
+    line-height:1.4;
+    color:var(--ink);
+    cursor:pointer;
+    transition: border-color .12s ease, background-color .12s ease, transform .08s ease;
+  }
+  .opt:active{ transform: scale(0.98); }
+  .opt:not(:disabled):hover{ border-color: var(--accent); }
+
+  .opt-letter{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    font-weight:700;
+    color:#fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius:50%;
+    min-width:26px;
+    width:26px;
+    height:26px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .opt-text{ flex:1; }
+  .opt-icon{
+    width:19px;height:19px;
+    flex-shrink:0;
+    opacity:0;
+  }
+  .opt-icon svg{ width:100%; height:100%; display:block; }
+
+  .opt.selected{
+    background:var(--accent-tint);
+    border-color:var(--accent);
+  }
+  .opt.selected .opt-letter{ box-shadow: 0 0 0 3px var(--accent-tint); }
+
+  .opt.correct{
+    background:var(--good-tint);
+    border-color:var(--good);
+  }
+  .opt.correct .opt-letter{ background:var(--good); }
+  .opt.correct .opt-icon{ opacity:1; color:var(--good); }
+
+  .opt.wrong{
+    background:var(--bad-tint);
+    border-color:var(--bad);
+  }
+  .opt.wrong .opt-letter{ background:var(--bad); }
+  .opt.wrong .opt-icon{ opacity:1; color:var(--bad); }
+
+  .opt:disabled{ cursor:default; }
+  .opt:disabled:not(.correct):not(.wrong){ opacity:0.5; }
+
+  .explain{
+    display:none;
+    border-top:2px dashed var(--line-strong);
+    padding-top:13px;
+    gap:6px;
+    flex-direction:column;
+  }
+  .explain.show{ display:flex; }
+  .explain-label{
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+  }
+  .explain-body{
+    font-size:14px;
+    line-height:1.5;
+    color:var(--ink);
+    margin:0;
+  }
+  .verdict{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    margin:0 0 2px;
+  }
+  .verdict.good{ color:var(--good); }
+  .verdict.bad{ color:var(--bad); }
+  .verdict svg{ width:17px;height:17px; }
+
+  .next-wrap{
+    padding-block: 12px max(12px, env(safe-area-inset-bottom, 0px));
+    flex-shrink:0;
+    margin-top:auto;
+  }
+  .nav-row{
+    display:flex;
+    gap:10px;
+    align-items:stretch;
+  }
+  .prev-btn{
+    display:none;
+    flex-shrink:0;
+    width:52px;
+    border-radius:999px;
+    border:2px solid var(--line-strong);
+    background:var(--card);
+    color:var(--ink);
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .prev-btn.show{ display:flex; }
+  .prev-btn:active{ transform: scale(0.96); }
+  .prev-btn svg{ width:20px; height:20px; }
+  .next-btn{
+    display:none;
+    flex:1;
+    padding:15px;
+    border-radius:999px;
+    border:none;
+    background: linear-gradient(100deg, var(--accent) 10%, var(--accent2) 100%);
+    color:#fff;
+    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .next-btn.show{ display:block; }
+  .next-btn:active{ transform: scale(0.98); }
+  .next-btn:disabled{ opacity:0.45; cursor:default; }
+  .next-btn.ghost{
+    background:var(--card);
+    color:var(--accent-ink);
+    border:2px solid var(--accent);
+  }
+
+  /* ---- Setup view ---- */
+  .setup-card{
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:24px;
+    box-shadow:var(--shadow);
+    padding:22px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    overflow-y:auto;
+  }
+  .setup-title{
+    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-size:21px;
+    font-weight:700;
+    margin:0;
+  }
+  .setup-sub{
+    font-size:13px;
+    color:var(--ink-dim);
+    margin:-10px 0 0;
+    line-height:1.4;
+  }
+  .setup-group{ display:flex; flex-direction:column; gap:9px; }
+  .setup-label{
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+  }
+  .pill-group{ display:flex; flex-direction:column; gap:8px; }
+  .pill-opt{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    width:100%;
+    text-align:left;
+    background:var(--paper);
+    border:2px solid var(--line);
+    border-radius:14px;
+    padding:12px 14px;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .pill-opt .pill-sub{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    font-weight:700;
+    color:var(--ink-dim);
+    flex-shrink:0;
+  }
+  .pill-opt.active{
+    background:var(--accent-tint);
+    border-color:var(--accent);
+    color:var(--accent-ink);
+  }
+  .pill-opt.active .pill-sub{ color:var(--accent-ink); }
+  .pill-row{ display:flex; gap:8px; }
+  .pill-row .pill-opt{ flex:1; justify-content:center; }
+  .setup-hint{
+    font-size:12px;
+    color:var(--ink-dim);
+    line-height:1.4;
+    margin:0;
+  }
+  .start-btn{
+    width:100%;
+    padding:15px;
+    border-radius:999px;
+    border:none;
+    background: linear-gradient(100deg, var(--accent) 10%, var(--accent2) 100%);
+    color:#fff;
+    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .start-btn:disabled{ opacity:0.4; cursor:default; }
+
+  /* ---- Oral practice body ---- */
+  .oral-body{ display:flex; flex-direction:column; gap:12px; }
+  .oral-guidance{
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-radius:16px;
+    padding:13px 14px;
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  .oral-guidance b{ color:var(--accent-ink); }
+  .reveal-btn{
+    align-self:flex-start;
+    background:none;
+    border:2px solid var(--accent);
+    color:var(--accent-ink);
+    border-radius:999px;
+    padding:8px 15px;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:12.5px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .oral-sample{
+    display:none;
+    background:var(--good-tint);
+    border:1.5px solid var(--good);
+    border-radius:16px;
+    padding:13px 14px;
+    font-size:13.5px;
+    line-height:1.5;
+  }
+  .oral-sample.show{ display:block; }
+
+  /* ---- Results view ---- */
+  .results-card{
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:24px;
+    box-shadow:var(--shadow);
+    padding:28px 20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:10px;
+  }
+  .results-card .big-score{
+    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-size:40px;
+    font-weight:800;
+    background: linear-gradient(100deg, var(--accent) 10%, var(--accent2) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin:4px 0;
+  }
+  .results-card h2{
+    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-size:19px;
+    margin:0;
+  }
+  .results-card p{
+    font-size:13.5px;
+    color:var(--ink-dim);
+    line-height:1.5;
+    margin:0;
+  }
+  .results-actions{ width:100%; display:flex; flex-direction:column; gap:10px; margin-top:12px; }
+
+  /* Stats drawer */
+  .backdrop{
+    position:fixed; inset:0;
+    background:rgba(20,11,38,0.5);
+    display:none;
+    z-index:10;
+  }
+  .backdrop.show{ display:block; }
+  .drawer{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    max-height:82vh;
+    background:var(--paper);
+    border-top:1.5px solid var(--line);
+    border-radius:26px 26px 0 0;
+    box-shadow:0 -10px 30px rgba(0,0,0,0.25);
+    transform:translateY(100%);
+    transition:transform .22s ease;
+    z-index:11;
+    display:flex;
+    flex-direction:column;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .drawer.show{ transform:translateY(0); }
+  .drawer-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 18px 8px;
+    flex-shrink:0;
+  }
+  .drawer-head h2{
+    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-size:18px; margin:0; font-weight:700;
+  }
+  .drawer-body{
+    overflow-y:auto;
+    padding:4px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .theme-row{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding:12px 13px;
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:14px;
+  }
+  .theme-row-top{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:8px;
+  }
+  .theme-name{ font-size:13.5px; font-weight:700; }
+  .theme-frac{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--ink-dim);
+    flex-shrink:0;
+  }
+  .bar-track{
+    height:7px;
+    border-radius:999px;
+    background:var(--line);
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius:999px;
+  }
+  .overall-row{
+    padding:14px 15px;
+    background: linear-gradient(100deg, var(--accent-tint) 0%, var(--accent-tint) 100%);
+    border:1.5px solid var(--accent);
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:4px;
+  }
+  .overall-row .theme-name{ color:var(--accent-ink); font-family:'Baloo 2', sans-serif; }
+  .overall-row .theme-frac{ color:var(--accent-ink); font-weight:700; }
+
+  .session-log-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:10px 13px;
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:14px;
+    font-size:12.5px;
+  }
+  .session-log-row .sl-meta{ color:var(--ink-dim); }
+  .session-log-row .sl-score{ font-family:'Space Mono', monospace; font-weight:700; }
+
+  .reset-zone{
+    margin-top:6px;
+    padding-top:14px;
+    border-top:2px dashed var(--line-strong);
+  }
+  .reset-btn{
+    width:100%;
+    padding:12px;
+    border-radius:999px;
+    border:2px solid var(--bad);
+    background:transparent;
+    color:var(--bad);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:13.5px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .reset-btn.armed{
+    background:var(--bad);
+    color:#fff;
+  }
+  .reset-hint{
+    font-size:11.5px;
+    color:var(--ink-dim);
+    text-align:center;
+    margin-top:6px;
+  }
+
+  @media (min-width: 560px){
+    body{ align-items:center; }
+    header, main{ width:100%; max-width:520px; }
+  }
+</style>
+
+<header>
+  <button class="brand" id="brandHome" type="button" aria-label="Back to start screen">
+    <span class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.5L14.4 9.1L21.5 9.6L15.9 14.1L17.8 21L12 17L6.2 21L8.1 14.1L2.5 9.6L9.6 9.1L12 2.5Z" fill="#fff"/>
+      </svg>
+    </span>
+    <h1>Blueprint Drills</h1>
+  </button>
+  <div style="display:flex; align-items:center; gap:8px;">
+    <span class="stat-pill timer" id="timerPill" style="display:none;">⏱ <b id="timerText">60:00</b></span>
+    <button class="stat-pill" id="headerStat" type="button" aria-label="Open score breakdown">
+      <b id="hsCorrect">0</b>&nbsp;/&nbsp;<span id="hsTotal">0</span>
+    </button>
+    <button class="icon-btn" id="openDrawer" type="button" aria-label="Open score breakdown">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 19V11M12 19V5M19 19V14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- SETUP VIEW -->
+  <div class="setup-card" id="setupView">
+    <div>
+      <p class="setup-title">Start a session</p>
+      <p class="setup-sub">386+ questions across 9 themes. Pick how you want to practice.</p>
+    </div>
+
+    <div class="setup-group">
+      <span class="setup-label">Mode</span>
+      <div class="pill-group" id="modeGroup">
+        <button class="pill-opt" data-mode="random" type="button">All topics, randomized<span class="pill-sub" id="poolRandom"></span></button>
+        <button class="pill-opt" data-mode="paper" type="button">By paper (organized)<span class="pill-sub"></span></button>
+        <button class="pill-opt" data-mode="oral" type="button">Oral practice<span class="pill-sub" id="poolOral"></span></button>
+      </div>
+    </div>
+
+    <div class="setup-group" id="paperGroup" style="display:none;">
+      <span class="setup-label">Which paper</span>
+      <div class="pill-group" id="paperPillGroup">
+        <button class="pill-opt" data-paper="PPP" type="button">Paper 1 — Pre-Design Planning &amp; Practice Mgmt<span class="pill-sub" id="poolPPP"></span></button>
+        <button class="pill-opt" data-paper="PDCA" type="button">Paper 2 — Project Delivery &amp; Contract Admin<span class="pill-sub" id="poolPDCA"></span></button>
+        <button class="pill-opt" data-paper="PE" type="button">Paper 3 — Professionalism &amp; Ethics (incl. History)<span class="pill-sub" id="poolPE"></span></button>
+      </div>
+    </div>
+
+    <div class="setup-group" id="timingGroup">
+      <span class="setup-label">Timing</span>
+      <div class="pill-row">
+        <button class="pill-opt" data-timed="1" type="button">Timed · 60 min</button>
+        <button class="pill-opt" data-timed="0" type="button">Untimed</button>
+      </div>
+    </div>
+
+    <div class="setup-group" id="revealGroup">
+      <span class="setup-label">After this session</span>
+      <div class="pill-group">
+        <button class="pill-opt" data-reveal="perSession" type="button">Show my score right away</button>
+        <button class="pill-opt" data-reveal="aggregateOnly" type="button">Just save it — I'll check my full aggregate later</button>
+      </div>
+    </div>
+
+    <p class="setup-hint" id="setupHint">Each session is up to 100 questions, drawn without repeats.</p>
+    <button class="start-btn" id="startBtn" type="button" disabled>Choose a mode to begin</button>
+  </div>
+
+  <!-- QUIZ VIEW -->
+  <div id="quizView" style="display:none; flex:1; min-height:0; display:flex; flex-direction:column;">
+    <div class="card" id="card">
+      <span class="theme-tag" id="themeTag">Theme</span>
+      <div class="q-index mono" id="qIndex"></div>
+      <p class="q-text" id="qText">Loading question…</p>
+      <div class="options" id="options"></div>
+      <div class="oral-body" id="oralBody" style="display:none;">
+        <div class="oral-guidance" id="oralGuidance"></div>
+        <button class="reveal-btn" id="revealSampleBtn" type="button">Show sample answer</button>
+        <div class="oral-sample" id="oralSample"></div>
+      </div>
+      <div class="explain" id="explain">
+        <p class="verdict" id="verdict"></p>
+        <span class="explain-label">Why</span>
+        <p class="explain-body" id="explainBody"></p>
+      </div>
+    </div>
+    <div class="next-wrap">
+      <div class="nav-row">
+        <button class="prev-btn" id="prevBtn" type="button" aria-label="Previous question">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="next-btn" id="submitBtn" type="button" disabled>Select an answer</button>
+        <button class="next-btn" id="nextBtn" type="button">Next question</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS VIEW -->
+  <div class="results-card" id="resultsView" style="display:none;">
+    <h2 id="resultsTitle">Session complete</h2>
+    <div class="big-score" id="resultsBig">—</div>
+    <p id="resultsBody"></p>
+    <div class="results-actions">
+      <button class="next-btn show" id="viewAggregateBtn" type="button">View full aggregate</button>
+      <button class="next-btn show ghost" id="newSessionBtn" type="button">Start another session</button>
+    </div>
+  </div>
+</main>
+
+<div class="backdrop" id="backdrop"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h2>Your full aggregate</h2>
+    <button class="icon-btn" id="closeDrawer" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="drawerBody">
+    <div class="overall-row">
+      <span class="theme-name">Overall accuracy (all sessions)</span>
+      <span class="theme-frac mono" id="overallFrac">0 / 0</span>
+    </div>
+    <div id="themeList"></div>
+    <div id="sessionLogWrap">
+      <span class="setup-label" style="display:block; margin: 10px 0 8px;">Session history</span>
+      <div id="sessionLog"></div>
+    </div>
+    <div class="reset-zone">
+      <button class="reset-btn" id="resetBtn" type="button">Reset all progress</button>
+      <p class="reset-hint">Score is stored on this device only. Tap twice to confirm.</p>
+    </div>
+  </div>
+</div>
+
+<script id="qdata" type="application/json">__QUESTIONS_JSON__</script>
+<script id="oraldata" type="application/json">__ORAL_JSON__</script>
+<script>
+(function(){
+  "use strict";
+
+  var QUESTIONS = [];
+  try { QUESTIONS = JSON.parse(document.getElementById('qdata').textContent); } catch (e) { QUESTIONS = []; }
+  var ORAL = [];
+  try { ORAL = JSON.parse(document.getElementById('oraldata').textContent); } catch (e) { ORAL = []; }
+
+  var STORE_KEY = 'blueprintDrills.scores.v1';
+  var SESSIONS_KEY = 'blueprintDrills.sessions.v1';
+  var SESSION_LEN = 100;
+  var TIMED_SECONDS = 60 * 60;
+
+  function loadJSON(key, fallback){
+    try { var raw = localStorage.getItem(key); if (raw) return JSON.parse(raw); } catch(e){}
+    return fallback;
+  }
+  function saveJSON(key, val){
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch(e){}
+  }
+
+  var scores = loadJSON(STORE_KEY, {});          // { themeName: {correct, attempted} }, lifetime, all sessions
+  var sessionLog = loadJSON(SESSIONS_KEY, []);    // [{date, mode, paperLabel, timed, total, correct, attempted}]
+
+  function ensureTheme(t){
+    if (!scores[t]) scores[t] = {correct:0, attempted:0};
+    return scores[t];
+  }
+
+  // ---- paper grouping over the 9 themes
+  var PAPER_MAP = {
+    'Pre-Design Planning and Practice Management': 'PPP',
+    'Project Delivery and Contract Administration': 'PDCA',
+    'Structures and Building Technology': 'PDCA',
+    'Building Services': 'PDCA',
+    'Design and Construction': 'PDCA',
+    'Sustainability and Environment': 'PDCA',
+    'Urban and Site Planning': 'PDCA',
+    'Professionalism and Ethics': 'PE',
+    'History and Theory of Architecture': 'PE'
+  };
+  var PAPER_LABEL = {
+    PPP: 'Paper 1 — Pre-Design Planning & Practice Management',
+    PDCA: 'Paper 2 — Project Delivery & Contract Administration',
+    PE: 'Paper 3 — Professionalism & Ethics (incl. History)'
+  };
+
+  var POOL_ALL = QUESTIONS.map(function(_, i){ return i; });
+  var POOL_BY_PAPER = { PPP: [], PDCA: [], PE: [] };
+  QUESTIONS.forEach(function(q, i){
+    var p = PAPER_MAP[q.theme];
+    if (p) POOL_BY_PAPER[p].push(i);
+  });
+
+  // ---- assign a rotating colour class to each theme, in stable alphabetical order
+  var THEME_CLASS = {};
+  (function(){
+    var names = {};
+    QUESTIONS.forEach(function(q){ names[q.theme] = true; });
+    var sorted = Object.keys(names).sort();
+    sorted.forEach(function(name, i){ THEME_CLASS[name] = 'tag-c' + (i % 9); });
+  })();
+  var ORAL_CLASS = 'tag-c6';
+
+  var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5L10 17.5L19.5 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var CROSS_SVG = '<svg viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>';
+
+  function shuffle(arr){
+    var idx = arr.slice();
+    for (var i = idx.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp;
+    }
+    return idx;
+  }
+
+  // ======================================================================
+  // SETUP VIEW
+  // ======================================================================
+  var setupView = document.getElementById('setupView');
+  var quizView = document.getElementById('quizView');
+  var resultsView = document.getElementById('resultsView');
+
+  var cfg = { mode: null, paper: null, timed: null, reveal: null };
+
+  var poolRandomEl = document.getElementById('poolRandom');
+  var poolOralEl = document.getElementById('poolOral');
+  var poolPPPEl = document.getElementById('poolPPP');
+  var poolPDCAEl = document.getElementById('poolPDCA');
+  var poolPEEl = document.getElementById('poolPE');
+  poolRandomEl.textContent = Math.min(SESSION_LEN, POOL_ALL.length) + ' Q';
+  poolOralEl.textContent = ORAL.length + ' prompts';
+  poolPPPEl.textContent = Math.min(SESSION_LEN, POOL_BY_PAPER.PPP.length) + ' Q';
+  poolPDCAEl.textContent = Math.min(SESSION_LEN, POOL_BY_PAPER.PDCA.length) + ' Q';
+  poolPEEl.textContent = Math.min(SESSION_LEN, POOL_BY_PAPER.PE.length) + ' Q';
+
+  var paperGroup = document.getElementById('paperGroup');
+  var timingGroup = document.getElementById('timingGroup');
+  var revealGroup = document.getElementById('revealGroup');
+  var setupHint = document.getElementById('setupHint');
+  var startBtn = document.getElementById('startBtn');
+
+  function setActivePill(groupEl, selector, matchFn){
+    var btns = groupEl.querySelectorAll('.pill-opt');
+    btns.forEach(function(b){ b.classList.toggle('active', matchFn(b)); });
+  }
+
+  document.getElementById('modeGroup').addEventListener('click', function(e){
+    var btn = e.target.closest('.pill-opt');
+    if (!btn) return;
+    cfg.mode = btn.dataset.mode;
+    cfg.paper = null;
+    setActivePill(document.getElementById('modeGroup'), null, function(b){ return b === btn; });
+    paperGroup.style.display = cfg.mode === 'paper' ? 'flex' : 'none';
+    timingGroup.style.display = cfg.mode === 'oral' ? 'none' : 'flex';
+    revealGroup.style.display = cfg.mode === 'oral' ? 'none' : 'flex';
+    refreshSetupHint();
+    refreshStartBtn();
+  });
+
+  document.getElementById('paperPillGroup').addEventListener('click', function(e){
+    var btn = e.target.closest('.pill-opt');
+    if (!btn) return;
+    cfg.paper = btn.dataset.paper;
+    setActivePill(document.getElementById('paperPillGroup'), null, function(b){ return b === btn; });
+    refreshSetupHint();
+    refreshStartBtn();
+  });
+
+  document.getElementById('timingGroup').addEventListener('click', function(e){
+    var btn = e.target.closest('.pill-opt');
+    if (!btn) return;
+    cfg.timed = btn.dataset.timed === '1';
+    setActivePill(document.getElementById('timingGroup'), null, function(b){ return b === btn; });
+    refreshStartBtn();
+  });
+
+  document.getElementById('revealGroup').addEventListener('click', function(e){
+    var btn = e.target.closest('.pill-opt');
+    if (!btn) return;
+    cfg.reveal = btn.dataset.reveal;
+    setActivePill(document.getElementById('revealGroup'), null, function(b){ return b === btn; });
+    refreshStartBtn();
+  });
+
+  function refreshSetupHint(){
+    if (cfg.mode === 'oral'){
+      setupHint.textContent = ORAL.length + ' practice prompts, self-paced — no timer, no scoring, just guidance and a sample answer for each.';
+    } else if (cfg.mode === 'paper' && cfg.paper){
+      var n = Math.min(SESSION_LEN, POOL_BY_PAPER[cfg.paper].length);
+      setupHint.textContent = 'This session: ' + n + ' questions from ' + PAPER_LABEL[cfg.paper] + ', no repeats.';
+    } else if (cfg.mode === 'random'){
+      setupHint.textContent = 'This session: ' + Math.min(SESSION_LEN, POOL_ALL.length) + ' questions across all 9 themes, no repeats.';
+    } else {
+      setupHint.textContent = 'Each session is up to 100 questions, drawn without repeats.';
+    }
+  }
+
+  function refreshStartBtn(){
+    var ready = false;
+    if (cfg.mode === 'oral') ready = true;
+    else if (cfg.mode === 'random') ready = cfg.timed !== null && cfg.reveal !== null;
+    else if (cfg.mode === 'paper') ready = !!cfg.paper && cfg.timed !== null && cfg.reveal !== null;
+    startBtn.disabled = !ready;
+    startBtn.textContent = ready ? 'Begin session' : 'Choose options to begin';
+  }
+
+  startBtn.addEventListener('click', beginSession);
+  document.getElementById('brandHome').addEventListener('click', showSetup);
+
+  function showSetup(){
+    stopTimer();
+    setupView.style.display = 'flex';
+    quizView.style.display = 'none';
+    resultsView.style.display = 'none';
+  }
+
+  // ======================================================================
+  // SESSION STATE
+  // ======================================================================
+  var sessionIndices = [];   // indices into QUESTIONS, for MCQ modes
+  var oralIndices = [];      // indices into ORAL, for oral mode
+  var history = [];          // {index, letterPicked, submitted, isRight} for MCQ; {index} for oral
+  var pos = -1;
+  var sessionCorrect = 0, sessionAttempted = 0;
+  var sessionStartedAt = null;
+  var timerInterval = null;
+  var timerRemaining = 0;
+
+  var qTextEl = document.getElementById('qText');
+  var qIndexEl = document.getElementById('qIndex');
+  var themeTagEl = document.getElementById('themeTag');
+  var optionsEl = document.getElementById('options');
+  var oralBody = document.getElementById('oralBody');
+  var oralGuidance = document.getElementById('oralGuidance');
+  var oralSample = document.getElementById('oralSample');
+  var revealSampleBtn = document.getElementById('revealSampleBtn');
+  var explainEl = document.getElementById('explain');
+  var explainBodyEl = document.getElementById('explainBody');
+  var verdictEl = document.getElementById('verdict');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var submitBtn = document.getElementById('submitBtn');
+  var hsCorrect = document.getElementById('hsCorrect');
+  var hsTotal = document.getElementById('hsTotal');
+  var timerPill = document.getElementById('timerPill');
+  var timerText = document.getElementById('timerText');
+
+  function totals(){
+    var c = 0, a = 0;
+    Object.keys(scores).forEach(function(t){ c += scores[t].correct; a += scores[t].attempted; });
+    return {c:c, a:a};
+  }
+  function updateHeader(){
+    var t = totals();
+    hsCorrect.textContent = t.c;
+    hsTotal.textContent = t.a;
+  }
+
+  function beginSession(){
+    history = [];
+    pos = -1;
+    sessionCorrect = 0; sessionAttempted = 0;
+    sessionStartedAt = Date.now();
+
+    if (cfg.mode === 'oral'){
+      oralIndices = shuffle(ORAL.map(function(_, i){ return i; }));
+    } else {
+      var pool = cfg.mode === 'paper' ? POOL_BY_PAPER[cfg.paper] : POOL_ALL;
+      sessionIndices = shuffle(pool).slice(0, SESSION_LEN);
+      if (cfg.timed){
+        timerRemaining = TIMED_SECONDS;
+        timerPill.style.display = 'inline-flex';
+        startTimer();
+      } else {
+        timerPill.style.display = 'none';
+      }
+    }
+
+    setupView.style.display = 'none';
+    resultsView.style.display = 'none';
+    quizView.style.display = 'flex';
+    advance();
+  }
+
+  function startTimer(){
+    stopTimer();
+    timerInterval = setInterval(function(){
+      timerRemaining--;
+      renderTimer();
+      if (timerRemaining <= 0){
+        stopTimer();
+        endSession();
+      }
+    }, 1000);
+    renderTimer();
+  }
+  function stopTimer(){
+    if (timerInterval){ clearInterval(timerInterval); timerInterval = null; }
+  }
+  function renderTimer(){
+    var m = Math.floor(Math.max(0, timerRemaining) / 60);
+    var s = Math.max(0, timerRemaining) % 60;
+    timerText.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+    timerPill.classList.toggle('low', timerRemaining <= 60);
+  }
+
+  // ---- advance: move forward in history, or pull the next session item, or end session
+  function advance(){
+    if (pos < history.length - 1){
+      renderAt(pos + 1);
+      return;
+    }
+    var sessionArr = cfg.mode === 'oral' ? oralIndices : sessionIndices;
+    if (history.length >= sessionArr.length){
+      endSession();
+      return;
+    }
+    var idx = sessionArr[history.length];
+    if (cfg.mode === 'oral'){
+      history.push({ index: idx });
+    } else {
+      history.push({ index: idx, letterPicked: null, submitted: false, isRight: null });
+    }
+    renderAt(history.length - 1);
+  }
+
+  function renderAt(p){
+    pos = p;
+    var entry = history[pos];
+    var card = document.getElementById('card');
+    card.scrollTop = 0;
+
+    if (cfg.mode === 'oral'){
+      renderOralAt(entry);
+    } else {
+      renderMcqAt(entry);
+    }
+    prevBtn.classList.toggle('show', pos > 0);
+  }
+
+  function renderMcqAt(entry){
+    var q = QUESTIONS[entry.index];
+    themeTagEl.textContent = q.theme;
+    themeTagEl.className = 'theme-tag ' + (THEME_CLASS[q.theme] || 'tag-c0');
+    var sessionArr = sessionIndices;
+    qIndexEl.textContent = 'Question ' + (history.indexOf(entry) + 1) + ' of ' + sessionArr.length;
+    qTextEl.textContent = q.question;
+    optionsEl.style.display = 'flex';
+    oralBody.style.display = 'none';
+    explainEl.classList.remove('show');
+    nextBtn.classList.remove('show');
+    submitBtn.classList.remove('show');
+    optionsEl.innerHTML = '';
+
+    ['A','B','C','D'].forEach(function(letter){
+      var btn = document.createElement('button');
+      btn.className = 'opt';
+      btn.type = 'button';
+      btn.dataset.letter = letter;
+      btn.innerHTML =
+        '<span class="opt-letter">' + letter + '</span>' +
+        '<span class="opt-text"></span>' +
+        '<span class="opt-icon"></span>';
+      btn.querySelector('.opt-text').textContent = q.options[letter];
+      btn.addEventListener('click', function(){ selectOption(letter); });
+      optionsEl.appendChild(btn);
+    });
+
+    if (entry.submitted){
+      paintGraded(entry);
+      submitBtn.classList.remove('show');
+      nextBtn.classList.add('show');
+      nextBtn.textContent = isLastInSession() ? 'Finish session' : 'Next question';
+    } else {
+      submitBtn.classList.add('show');
+      submitBtn.disabled = !entry.letterPicked;
+      submitBtn.textContent = entry.letterPicked ? 'Submit answer' : 'Select an answer';
+      if (entry.letterPicked) paintSelected(entry);
+    }
+  }
+
+  function paintSelected(entry){
+    var buttons = optionsEl.querySelectorAll('.opt');
+    buttons.forEach(function(btn){
+      btn.classList.toggle('selected', btn.dataset.letter === entry.letterPicked);
+    });
+  }
+
+  function paintGraded(entry){
+    var q = QUESTIONS[entry.index];
+    var correctLetter = q.correct;
+    var buttons = optionsEl.querySelectorAll('.opt');
+    buttons.forEach(function(btn){
+      btn.disabled = true;
+      btn.classList.remove('selected');
+      var l = btn.dataset.letter;
+      if (l === correctLetter){
+        btn.classList.add('correct');
+        btn.querySelector('.opt-icon').innerHTML = CHECK_SVG;
+      } else if (l === entry.letterPicked){
+        btn.classList.add('wrong');
+        btn.querySelector('.opt-icon').innerHTML = CROSS_SVG;
+      }
+    });
+    verdictEl.className = 'verdict ' + (entry.isRight ? 'good' : 'bad');
+    verdictEl.innerHTML = (entry.isRight ? CHECK_SVG : CROSS_SVG) + (entry.isRight ? 'Nailed it' : 'Not quite');
+    explainBodyEl.textContent = q.explanation;
+    explainEl.classList.add('show');
+  }
+
+  function selectOption(letter){
+    var entry = history[pos];
+    if (entry.submitted) return; // locked once graded
+    entry.letterPicked = letter;
+    paintSelected(entry);
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit answer';
+  }
+
+  function submitAnswer(){
+    var entry = history[pos];
+    if (!entry || entry.submitted || !entry.letterPicked) return;
+    var q = QUESTIONS[entry.index];
+    entry.submitted = true;
+    entry.isRight = entry.letterPicked === q.correct;
+
+    var rec = ensureTheme(q.theme);
+    rec.attempted += 1;
+    if (entry.isRight) rec.correct += 1;
+    saveJSON(STORE_KEY, scores);
+    updateHeader();
+
+    sessionAttempted += 1;
+    if (entry.isRight) sessionCorrect += 1;
+
+    paintGraded(entry);
+    submitBtn.classList.remove('show');
+    nextBtn.classList.add('show');
+    nextBtn.textContent = isLastInSession() ? 'Finish session' : 'Next question';
+  }
+
+  function isLastInSession(){
+    var sessionArr = cfg.mode === 'oral' ? oralIndices : sessionIndices;
+    return history.length >= sessionArr.length && pos === history.length - 1;
+  }
+
+  function renderOralAt(entry){
+    var o = ORAL[entry.index];
+    themeTagEl.textContent = o.category;
+    themeTagEl.className = 'theme-tag ' + ORAL_CLASS;
+    qIndexEl.textContent = 'Prompt ' + (history.indexOf(entry) + 1) + ' of ' + oralIndices.length;
+    qTextEl.textContent = o.prompt;
+    optionsEl.style.display = 'none';
+    optionsEl.innerHTML = '';
+    explainEl.classList.remove('show');
+    submitBtn.classList.remove('show');
+    oralBody.style.display = 'flex';
+    oralGuidance.innerHTML = '<b>How to answer:</b> ' + o.guidance;
+    oralSample.textContent = o.sampleAnswer || '';
+    oralSample.classList.remove('show');
+    revealSampleBtn.style.display = o.sampleAnswer ? 'inline-block' : 'none';
+    revealSampleBtn.textContent = 'Show sample answer';
+    nextBtn.classList.add('show');
+    nextBtn.textContent = isLastInSession() ? 'Finish practice' : 'Next question';
+  }
+
+  revealSampleBtn.addEventListener('click', function(){
+    var showing = oralSample.classList.toggle('show');
+    revealSampleBtn.textContent = showing ? 'Hide sample answer' : 'Show sample answer';
+  });
+
+  submitBtn.addEventListener('click', submitAnswer);
+  nextBtn.addEventListener('click', function(){
+    if (isLastInSession()){ endSession(); return; }
+    advance();
+  });
+  prevBtn.addEventListener('click', function(){
+    if (pos > 0) renderAt(pos - 1);
+  });
+
+  // ======================================================================
+  // RESULTS VIEW
+  // ======================================================================
+  var resultsTitle = document.getElementById('resultsTitle');
+  var resultsBig = document.getElementById('resultsBig');
+  var resultsBody = document.getElementById('resultsBody');
+
+  function endSession(){
+    stopTimer();
+    quizView.style.display = 'none';
+    resultsView.style.display = 'flex';
+
+    if (cfg.mode === 'oral'){
+      resultsTitle.textContent = 'Practice complete';
+      resultsBig.textContent = oralIndices.length;
+      resultsBody.textContent = 'You went through ' + oralIndices.length + ' oral practice prompts. Come back any time to go through them again in a new order.';
+      return;
+    }
+
+    var pct = sessionAttempted ? Math.round((sessionCorrect / sessionAttempted) * 100) : 0;
+    var durationSec = sessionStartedAt ? Math.round((Date.now() - sessionStartedAt) / 1000) : 0;
+
+    sessionLog.unshift({
+      date: new Date().toISOString(),
+      mode: cfg.mode,
+      paperLabel: cfg.mode === 'paper' ? PAPER_LABEL[cfg.paper] : 'All topics',
+      timed: !!cfg.timed,
+      total: sessionIndices.length,
+      correct: sessionCorrect,
+      attempted: sessionAttempted
+    });
+    if (sessionLog.length > 50) sessionLog = sessionLog.slice(0, 50);
+    saveJSON(SESSIONS_KEY, sessionLog);
+
+    if (cfg.reveal === 'perSession'){
+      resultsTitle.textContent = 'Session complete';
+      resultsBig.textContent = sessionCorrect + ' / ' + sessionAttempted;
+      resultsBody.textContent = pct + '% correct this session' + (durationSec ? ' · ' + Math.round(durationSec/60) + ' min' : '') + '. This session is also saved into your full aggregate below.';
+    } else {
+      resultsTitle.textContent = 'Session saved';
+      resultsBig.textContent = sessionAttempted + ' answered';
+      resultsBody.textContent = "Your score for this one is tucked away — tap \"View full aggregate\" whenever you're ready to see everything together.";
+    }
+  }
+
+  document.getElementById('newSessionBtn').addEventListener('click', showSetup);
+  document.getElementById('viewAggregateBtn').addEventListener('click', openDrawer);
+
+  // ======================================================================
+  // AGGREGATE DRAWER
+  // ======================================================================
+  var backdrop = document.getElementById('backdrop');
+  var drawer = document.getElementById('drawer');
+  var themeList = document.getElementById('themeList');
+  var sessionLogEl = document.getElementById('sessionLog');
+  var overallFrac = document.getElementById('overallFrac');
+  var resetBtn = document.getElementById('resetBtn');
+  var resetArmed = false;
+
+  function renderDrawer(){
+    var t = totals();
+    overallFrac.textContent = t.c + ' / ' + t.a;
+
+    var themeNames = {};
+    QUESTIONS.forEach(function(q){ themeNames[q.theme] = true; });
+    var names = Object.keys(themeNames).sort();
+
+    themeList.innerHTML = '';
+    names.forEach(function(name){
+      var rec = scores[name] || {correct:0, attempted:0};
+      var pct = rec.attempted ? Math.round((rec.correct / rec.attempted) * 100) : 0;
+      var row = document.createElement('div');
+      row.className = 'theme-row';
+      row.innerHTML =
+        '<div class="theme-row-top">' +
+          '<span class="theme-name"></span>' +
+          '<span class="theme-frac mono"></span>' +
+        '</div>' +
+        '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div>';
+      row.querySelector('.theme-name').textContent = name;
+      row.querySelector('.theme-frac').textContent = rec.correct + ' / ' + rec.attempted;
+      themeList.appendChild(row);
+    });
+
+    sessionLogEl.innerHTML = '';
+    if (!sessionLog.length){
+      var empty = document.createElement('p');
+      empty.className = 'setup-hint';
+      empty.textContent = 'No completed sessions yet.';
+      sessionLogEl.appendChild(empty);
+    } else {
+      sessionLog.forEach(function(s){
+        var row = document.createElement('div');
+        row.className = 'session-log-row';
+        var d = new Date(s.date);
+        var dateStr = (d.getMonth()+1) + '/' + d.getDate() + ' ' + (d.getHours()<10?'0':'')+d.getHours() + ':' + (d.getMinutes()<10?'0':'')+d.getMinutes();
+        row.innerHTML =
+          '<span class="sl-meta">' + dateStr + ' · ' + s.paperLabel + (s.timed ? ' · timed' : '') + '</span>' +
+          '<span class="sl-score mono">' + s.correct + '/' + s.attempted + '</span>';
+        sessionLogEl.appendChild(row);
+      });
+    }
+  }
+
+  function openDrawer(){
+    renderDrawer();
+    backdrop.classList.add('show');
+    drawer.classList.add('show');
+  }
+  function closeDrawer(){
+    backdrop.classList.remove('show');
+    drawer.classList.remove('show');
+    resetArmed = false;
+    resetBtn.classList.remove('armed');
+    resetBtn.textContent = 'Reset all progress';
+  }
+
+  document.getElementById('openDrawer').addEventListener('click', openDrawer);
+  document.getElementById('headerStat').addEventListener('click', openDrawer);
+  document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+  backdrop.addEventListener('click', closeDrawer);
+
+  resetBtn.addEventListener('click', function(){
+    if (!resetArmed){
+      resetArmed = true;
+      resetBtn.classList.add('armed');
+      resetBtn.textContent = 'Tap again to confirm';
+      return;
+    }
+    scores = {};
+    sessionLog = [];
+    saveJSON(STORE_KEY, scores);
+    saveJSON(SESSIONS_KEY, sessionLog);
+    updateHeader();
+    renderDrawer();
+    resetArmed = false;
+    resetBtn.classList.remove('armed');
+    resetBtn.textContent = 'Reset all progress';
+  });
+
+  // ---- boot
+  function start(){
+    updateHeader();
+    showSetup();
+  }
+
+  if (window.claude && window.claude.hot){
+    window.claude.hot.ready ? window.claude.hot.ready(start) : start();
+  } else {
+    start();
+  }
+})();
+</script>
