@@ -24,8 +24,23 @@ Education
 Everyone / suitable for all ages (professional study content)
 
 ## Privacy policy URL
-https://<your-username>.github.io/<repo>/privacy.html
-(fill in once GitHub Pages is turned on — see README)
+https://lutarchitecture-boop.github.io/blueprint-drills-app/privacy.html
+
+## Pricing (one-time paid download)
+Set in Play Console under Monetize -> Products -> App pricing once the listing is created.
+Default price: $20 USD (Google auto-converts this to every other country unless overridden below).
+
+Custom overrides:
+- Nigeria: NGN 20,000 (~$15 USD at time of writing - intentionally cheaper for local affordability)
+- Canada: CAD 20
+- United Kingdom: GBP 20
+- United States: USD 20 (matches default, no override needed)
+- Eurozone countries (apply as one batch selection in Play Console): EUR 20
+
+Note: GBP 20 and EUR 20 are worth more than USD 20 at current exchange rates (roughly $27 and $22
+respectively), so UK/Eurozone buyers pay somewhat more in USD terms than US/Canada buyers under this
+flat "20 units of local currency" scheme. This was a deliberate simplicity choice, not a parity match -
+revisit if true price parity across regions is ever wanted instead.
 
 ## Assets still needed
 - Feature graphic: 1024 x 500 px
