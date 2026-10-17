@@ -10,13 +10,13 @@ ORAL = 'source/oral_practice.json'
 OUT = 'www/index.html'
 
 FONT_FACES = """<style>
-  @font-face{ font-family:'Baloo 2'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/baloo-2-latin-600-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Baloo 2'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/baloo-2-latin-700-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Baloo 2'; font-style:normal; font-weight:800; font-display:swap; src:url('fonts/baloo-2-latin-800-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/plus-jakarta-sans-latin-500-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/plus-jakarta-sans-latin-600-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Fredoka'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/fredoka-latin-500-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Fredoka'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/fredoka-latin-600-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Fredoka'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/fredoka-latin-700-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Funnel Display'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/funnel-display-latin-400-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Funnel Display'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/funnel-display-latin-500-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Funnel Display'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/funnel-display-latin-600-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Funnel Display'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/funnel-display-latin-700-normal.woff2') format('woff2'); }
   @font-face{ font-family:'Space Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/space-mono-latin-400-normal.woff2') format('woff2'); }
   @font-face{ font-family:'Space Mono'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/space-mono-latin-700-normal.woff2') format('woff2'); }
 </style>

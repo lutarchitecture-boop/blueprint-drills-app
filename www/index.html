@@ -5,85 +5,85 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 </head>
 <body>
-<title>Blueprint Drills</title>
+<title>Coffee Agent</title>
 <style>
-  @font-face{ font-family:'Baloo 2'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/baloo-2-latin-600-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Baloo 2'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/baloo-2-latin-700-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Baloo 2'; font-style:normal; font-weight:800; font-display:swap; src:url('fonts/baloo-2-latin-800-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/plus-jakarta-sans-latin-500-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/plus-jakarta-sans-latin-600-normal.woff2') format('woff2'); }
-  @font-face{ font-family:'Plus Jakarta Sans'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Fredoka'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/fredoka-latin-500-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Fredoka'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/fredoka-latin-600-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Fredoka'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/fredoka-latin-700-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Funnel Display'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/funnel-display-latin-400-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Funnel Display'; font-style:normal; font-weight:500; font-display:swap; src:url('fonts/funnel-display-latin-500-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Funnel Display'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/funnel-display-latin-600-normal.woff2') format('woff2'); }
+  @font-face{ font-family:'Funnel Display'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/funnel-display-latin-700-normal.woff2') format('woff2'); }
   @font-face{ font-family:'Space Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/space-mono-latin-400-normal.woff2') format('woff2'); }
   @font-face{ font-family:'Space Mono'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/space-mono-latin-700-normal.woff2') format('woff2'); }
 </style>
 <style>
   :root{
-    --bg-base:#FBF7FF;
-    --blob1:#F6D9FF;
-    --blob2:#D6ECFF;
-    --blob3:#FFEAD6;
-    --paper:#F6F0FF;
+    --bg-base:#F4EFE3;
+    --blob1:#DCE8DF;
+    --blob2:#F3E0C2;
+    --blob3:#E3D9C8;
+    --paper:#FBF8F2;
     --card:#FFFFFF;
-    --ink:#1E1033;
-    --ink-dim:#79709C;
-    --line:#E8DEFB;
-    --line-strong:#D2BFF5;
-    --accent:#8B5CF6;
-    --accent2:#EC4899;
-    --accent-ink:#6B21D6;
-    --accent-tint:#F1E6FF;
+    --ink:#252B28;
+    --ink-dim:#6E7268;
+    --line:#E3DCC9;
+    --line-strong:#CFC4A8;
+    --accent:#173D32;
+    --accent2:#B28A4A;
+    --accent-ink:#173D32;
+    --accent-tint:#DCE8DF;
     --good:#0FA968;
     --good-tint:#DEFBEA;
     --bad:#F43F5E;
     --bad-tint:#FFE4E8;
-    --shadow: 0 2px 6px rgba(139,79,246,0.10), 0 16px 32px -14px rgba(139,79,246,0.38);
+    --shadow: 0 2px 6px rgba(23,61,50,0.12), 0 16px 32px -14px rgba(23,61,50,0.32);
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg-base:#140B26;
-      --blob1:#3A1653;
-      --blob2:#0F2A46;
-      --blob3:#3A1830;
-      --paper:#1B1236;
-      --card:#20153C;
-      --ink:#F4EEFF;
-      --ink-dim:#B0A2D9;
-      --line:#3A2A5C;
-      --line-strong:#513E7E;
-      --accent:#B794FF;
-      --accent2:#FF7AC6;
-      --accent-ink:#E7D6FF;
-      --accent-tint:#2C1B4D;
+      --bg-base:#1C211D;
+      --blob1:#24352B;
+      --blob2:#2E2A1C;
+      --blob3:#2A2620;
+      --paper:#20251F;
+      --card:#262D27;
+      --ink:#F4EFE3;
+      --ink-dim:#A7AB9D;
+      --line:#38413A;
+      --line-strong:#4C574E;
+      --accent:#3FA383;
+      --accent2:#D1A662;
+      --accent-ink:#DCE8DF;
+      --accent-tint:#1E3A30;
       --good:#39E68F;
       --good-tint:#103A26;
       --bad:#FF6B85;
       --bad-tint:#401822;
-      --shadow: 0 2px 6px rgba(0,0,0,0.4), 0 18px 36px -16px rgba(183,148,255,0.45);
+      --shadow: 0 2px 6px rgba(0,0,0,0.4), 0 18px 36px -16px rgba(63,163,131,0.40);
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"]{
-    --bg-base:#140B26;
-    --blob1:#3A1653;
-    --blob2:#0F2A46;
-    --blob3:#3A1830;
-    --paper:#1B1236;
-    --card:#20153C;
-    --ink:#F4EEFF;
-    --ink-dim:#B0A2D9;
-    --line:#3A2A5C;
-    --line-strong:#513E7E;
-    --accent:#B794FF;
-    --accent2:#FF7AC6;
-    --accent-ink:#E7D6FF;
-    --accent-tint:#2C1B4D;
+    --bg-base:#1C211D;
+    --blob1:#24352B;
+    --blob2:#2E2A1C;
+    --blob3:#2A2620;
+    --paper:#20251F;
+    --card:#262D27;
+    --ink:#F4EFE3;
+    --ink-dim:#A7AB9D;
+    --line:#38413A;
+    --line-strong:#4C574E;
+    --accent:#3FA383;
+    --accent2:#D1A662;
+    --accent-ink:#DCE8DF;
+    --accent-tint:#1E3A30;
     --good:#39E68F;
     --good-tint:#103A26;
     --bad:#FF6B85;
     --bad-tint:#401822;
-    --shadow: 0 2px 6px rgba(0,0,0,0.4), 0 18px 36px -16px rgba(183,148,255,0.45);
+    --shadow: 0 2px 6px rgba(0,0,0,0.4), 0 18px 36px -16px rgba(63,163,131,0.40);
     color-scheme: dark;
   }
 
@@ -98,7 +98,7 @@
       radial-gradient(40% 30% at 90% 96%, var(--blob3) 0%, transparent 100%);
     background-attachment:fixed;
     color:var(--ink);
-    font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family:'Funnel Display', system-ui, sans-serif;
     display:flex;
     flex-direction:column;
     padding-inline: 16px;
@@ -143,7 +143,7 @@
   }
   .brand-mark svg{ width:18px; height:18px; }
   .brand h1{
-    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-family:'Fredoka', 'Funnel Display', sans-serif;
     font-size:19px;
     margin:0;
     font-weight:700;
@@ -263,7 +263,7 @@
   }
 
   .q-text{
-    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-family:'Fredoka', 'Funnel Display', sans-serif;
     font-size:19px;
     line-height:1.38;
     font-weight:700;
@@ -288,7 +288,7 @@
     border:2px solid var(--line);
     border-radius:16px;
     padding:11px 13px;
-    font-family:'Plus Jakarta Sans', sans-serif;
+    font-family:'Funnel Display', sans-serif;
     font-size:14.5px;
     font-weight:500;
     line-height:1.4;
@@ -369,7 +369,7 @@
     display:inline-flex;
     align-items:center;
     gap:6px;
-    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-family:'Fredoka', 'Funnel Display', sans-serif;
     font-weight:700;
     font-size:15px;
     margin:0 0 2px;
@@ -412,7 +412,7 @@
     border:none;
     background: linear-gradient(100deg, var(--accent) 10%, var(--accent2) 100%);
     color:#fff;
-    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-family:'Fredoka', 'Funnel Display', sans-serif;
     font-size:16px;
     font-weight:700;
     cursor:pointer;
@@ -440,7 +440,7 @@
     overflow-y:auto;
   }
   .setup-title{
-    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-family:'Fredoka', 'Funnel Display', sans-serif;
     font-size:21px;
     font-weight:700;
     margin:0;
@@ -472,7 +472,7 @@
     border:2px solid var(--line);
     border-radius:14px;
     padding:12px 14px;
-    font-family:'Plus Jakarta Sans', sans-serif;
+    font-family:'Funnel Display', sans-serif;
     font-size:14px;
     font-weight:600;
     color:var(--ink);
@@ -506,7 +506,7 @@
     border:none;
     background: linear-gradient(100deg, var(--accent) 10%, var(--accent2) 100%);
     color:#fff;
-    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-family:'Fredoka', 'Funnel Display', sans-serif;
     font-size:16px;
     font-weight:700;
     cursor:pointer;
@@ -533,7 +533,7 @@
     color:var(--accent-ink);
     border-radius:999px;
     padding:8px 15px;
-    font-family:'Plus Jakarta Sans', sans-serif;
+    font-family:'Funnel Display', sans-serif;
     font-size:12.5px;
     font-weight:700;
     cursor:pointer;
@@ -563,7 +563,7 @@
     gap:10px;
   }
   .results-card .big-score{
-    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-family:'Fredoka', 'Funnel Display', sans-serif;
     font-size:40px;
     font-weight:800;
     background: linear-gradient(100deg, var(--accent) 10%, var(--accent2) 90%);
@@ -573,7 +573,7 @@
     margin:4px 0;
   }
   .results-card h2{
-    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-family:'Fredoka', 'Funnel Display', sans-serif;
     font-size:19px;
     margin:0;
   }
@@ -615,7 +615,7 @@
     flex-shrink:0;
   }
   .drawer-head h2{
-    font-family:'Baloo 2', 'Plus Jakarta Sans', sans-serif;
+    font-family:'Fredoka', 'Funnel Display', sans-serif;
     font-size:18px; margin:0; font-weight:700;
   }
   .drawer-body{
@@ -668,7 +668,7 @@
     justify-content:space-between;
     margin-bottom:4px;
   }
-  .overall-row .theme-name{ color:var(--accent-ink); font-family:'Baloo 2', sans-serif; }
+  .overall-row .theme-name{ color:var(--accent-ink); font-family:'Fredoka', sans-serif; }
   .overall-row .theme-frac{ color:var(--accent-ink); font-weight:700; }
 
   .session-log-row{
@@ -697,7 +697,7 @@
     border:2px solid var(--bad);
     background:transparent;
     color:var(--bad);
-    font-family:'Plus Jakarta Sans', sans-serif;
+    font-family:'Funnel Display', sans-serif;
     font-size:13.5px;
     font-weight:700;
     cursor:pointer;
@@ -723,10 +723,10 @@
   <button class="brand" id="brandHome" type="button" aria-label="Back to start screen">
     <span class="brand-mark">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2.5L14.4 9.1L21.5 9.6L15.9 14.1L17.8 21L12 17L6.2 21L8.1 14.1L2.5 9.6L9.6 9.1L12 2.5Z" fill="#fff"/>
+        <path d="M4 12.5L9.5 18L20 6" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </span>
-    <h1>Blueprint Drills</h1>
+    <h1>Coffee Agent</h1>
   </button>
   <div style="display:flex; align-items:center; gap:8px;">
     <span class="stat-pill timer" id="timerPill" style="display:none;">⏱ <b id="timerText">60:00</b></span>

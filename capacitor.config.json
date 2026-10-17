@@ -1,9 +1,9 @@
 {
   "appId": "com.blueprintdrills.ppceprep",
-  "appName": "Blueprint Drills",
+  "appName": "Coffee Agent",
   "webDir": "www",
-  "backgroundColor": "#FBF7FF",
+  "backgroundColor": "#F4EFE3",
   "android": {
-    "backgroundColor": "#FBF7FF"
+    "backgroundColor": "#F4EFE3"
   }
 }

@@ -1,19 +1,21 @@
 # Play Store listing copy (draft)
 
 ## App name
-Blueprint Drills
+Coffee Agent
 
 ## Short description (max 80 characters)
-PPCE architecture exam practice: 386 questions, instant feedback, no internet.
+PPCE architecture exam practice: 500+ questions, oral prep, no internet.
 
 ## Full description (max 4000 characters)
-Blueprint Drills is an offline practice quiz for architecture professionals preparing for the PPCE licensing exam.
+Coffee Agent is an offline practice quiz for architecture professionals preparing for the PPCE licensing exam — built for the long study sessions, fueled by coffee, that exam prep actually takes.
 
-Answer multiple-choice questions pulled from real past-question review material, get instant feedback — a green check for the right answer, a red X for the wrong one — plus a short explanation of why, then move straight to the next question. Questions come up in random order across nine themes (Pre-Design Planning and Practice Management, Project Delivery and Contract Administration, Professionalism and Ethics, Structures and Building Technology, Building Services, Design and Construction, Sustainability and Environment, History and Theory of Architecture, and Urban and Site Planning), so you get broad, mixed-topic revision rather than working through one section at a time.
+Answer multiple-choice questions pulled from real past-question review material, get instant feedback, and a short explanation of why. Choose randomized practice across all topics, or study paper-by-paper (Pre-Design Planning and Practice Management, Project Delivery and Contract Administration, or Professionalism and Ethics, including History and Theory of Architecture). Set up timed or untimed sessions of 100 questions, with the freedom to change your answer before submitting.
 
-Your score is tracked per theme and saved right on your device, so you can see exactly where you're strong and where you need more practice — and it's still there the next time you open the app.
+A dedicated Oral Practice mode helps you prepare for the interview defense stage with real exam-style prompts and guidance.
 
-Works completely offline. No account, no ads, no tracking, no internet connection required.
+Your scores and session history are tracked and saved right on your device, so you can see exactly where you're strong and where you need more practice.
+
+Works completely offline. No account required to practice.
 
 This is an independent study tool created to help exam candidates practice. It is not an official publication of, and is not affiliated with or endorsed by, ARCON or JBAE.
 
@@ -26,23 +28,16 @@ Everyone / suitable for all ages (professional study content)
 ## Privacy policy URL
 https://lutarchitecture-boop.github.io/blueprint-drills-app/privacy.html
 
-## Pricing (one-time paid download)
-Set in Play Console under Monetize -> Products -> App pricing once the listing is created.
-Default price: $20 USD (Google auto-converts this to every other country unless overridden below).
+## Pricing
+Free to download. Premium subscription ($14.99/month) planned for a later update, via Google Play Billing (set up separately after orals — see /areas/blueprint-drills-app.md).
 
-Custom overrides:
-- Nigeria: NGN 20,000 (~$15 USD at time of writing - intentionally cheaper for local affordability)
-- Canada: CAD 20
-- United Kingdom: GBP 20
-- United States: USD 20 (matches default, no override needed)
-- Eurozone countries (apply as one batch selection in Play Console): EUR 20
+## Brand identity
+- App name: Coffee Agent
+- Logo mark: the checkmark/leaf "validate" mark from the Coffee Agent brand kit, on a Deep Forest (#173D32) to Antique Brass (#B28A4A) gradient
+- Palette: Archive Charcoal #252B28 (ink), Deep Forest #173D32 (primary accent), Antique Brass #B28A4A (secondary accent), Evidence Sage #DCE8DF (tint), Warm Parchment #F4EFE3 (background)
+- Typography: Fredoka (headlines/display), Funnel Display (body text), Space Mono (stats/numbers)
 
-Note: GBP 20 and EUR 20 are worth more than USD 20 at current exchange rates (roughly $27 and $22
-respectively), so UK/Eurozone buyers pay somewhat more in USD terms than US/Canada buyers under this
-flat "20 units of local currency" scheme. This was a deliberate simplicity choice, not a parity match -
-revisit if true price parity across regions is ever wanted instead.
-
-## Assets still needed
-- Feature graphic: 1024 x 500 px
-- Phone screenshots: at least 2, ideally 4-8 (1080 x 1920 or similar — I can generate these from the running app once the repo build is live)
-- App icon: already generated at `assets/icon.png` (1024x1024, matches Play Store's 512x512 requirement when downscaled)
+## Assets
+- App icon: regenerated at `assets/icon.png` (1024x1024) from the real Coffee Agent logo mark
+- Feature graphic (1024 x 500 px): still needed
+- Phone screenshots (at least 2, ideally 4-8): still needed — can be generated from the running app
